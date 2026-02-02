@@ -108,7 +108,7 @@ export default function Experience() {
   const lineSize = useTransform(scrollYProgress, (v) => `${v*100}%`)
   
   return (
-    <section id="experience" className="relative bg-bg text-text">
+    <section id="experience" className="relative bg-bg text-text min-h-screen">
       <div ref={sceneRef} style={{height: `${SCENE_HEIGHT_VH}vh`, minHeight: "120vh"}} className="relative">
         <div className="sticky top-0 h-screen flex flex-col">
           <h2 className="text-4xl sm:text-5xl font-semibold mt-5 text-center text-transparent bg-clip-text bg-linear-to-r from-[#7bdfee] to-[#15177c] drop-shadow-lg">Experience</h2>

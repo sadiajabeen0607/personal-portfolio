@@ -59,7 +59,7 @@ export default function Navbar() {
       {
         threshold: 0,
         rootMargin: "-120px 0px 0px 0px", // navbar height
-      }
+      },
     );
 
     observer.observe(homeSection);
@@ -68,43 +68,42 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-    if (forceVisible) {
-      setVisible(true);
-      setBgVisible(true);
-      return;
-    }
+      if (forceVisible) {
+        setVisible(true);
+        setBgVisible(true);
+        return;
+      }
 
-    if (currentScrollY > lastScrollY.current) {
-      // Scrolling down
-      setVisible(false);
-      setBgVisible(false);
-    } else {
-      // Scrolling up
-      setVisible(true);
-      setBgVisible(true);
-
-      if (timerId.current) clearTimeout(timerId.current);
-
-      timerId.current = window.setTimeout(() => {
+      if (currentScrollY > lastScrollY.current) {
+        // Scrolling down
         setVisible(false);
         setBgVisible(false);
-      }, 3000);
-    }
+      } else {
+        // Scrolling up
+        setVisible(true);
+        setBgVisible(true);
 
-    lastScrollY.current = currentScrollY;
-  };
+        if (timerId.current) clearTimeout(timerId.current);
 
-  window.addEventListener("scroll", handleScroll, { passive: true });
+        timerId.current = window.setTimeout(() => {
+          setVisible(false);
+          setBgVisible(false);
+        }, 3000);
+      }
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-    if (timerId.current) clearTimeout(timerId.current);
-  };
-}, [forceVisible]);
+      lastScrollY.current = currentScrollY;
+    };
 
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (timerId.current) clearTimeout(timerId.current);
+    };
+  }, [forceVisible]);
 
   return (
     <>
@@ -115,7 +114,13 @@ export default function Navbar() {
         <div className="px-6 h-20 flex items-center justify-between">
           {/* LOGO */}
           <div className="flex items-center space-x-2">
-            <Image src={Logo} alt="logo" className="w-8 h-14" />
+            <Image
+              src={Logo}
+              alt="logo"
+              width={32}
+              height={56}
+              className="w-8 h-14"
+            />
             <span className="text-2xl font-bold gradient-text hidden sm:block">
               Sadia.
             </span>

@@ -27,7 +27,7 @@ export default function Testimonials() {
       className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-bg text-text"
     >
       <motion.h2
-        className="text-4xl font-bold mb-16"
+        className="text-4xl font-bold mb-16 text-center"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
