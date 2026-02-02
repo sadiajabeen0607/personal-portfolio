@@ -1,30 +1,56 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const experiences = [
+type Experience = {
+  role: string;
+  company: string;
+  duration: string;
+  description: string;
+};
+
+type ExperienceItemProps = {
+  exp: Experience;
+  idx: number;
+  start: number;
+  end: number;
+  scrollYProgress: MotionValue<number>; // framer motion ka MotionValue
+  layout: "desktop" | "mobile";
+};
+
+const experiences: Experience[] = [
   {
     role: "Self-Taught Web Developer",
     company: "Independent Learning",
     duration: "2021",
-    description: "Learned HTML, CSS, JavaScript and basic PHP through online resources, tutorials, and practice projects."
+    description:
+      "Learned HTML, CSS, JavaScript and basic PHP through online resources, tutorials, and practice projects.",
   },
   {
     role: "Web Development Trainee",
     company: "Infotech Institute, Talagang",
     duration: "2023",
-    description: "Completed professional training in PHP and MySQL. Built small CRUD projects and gained strong understanding of backend development."
+    description:
+      "Completed professional training in PHP and MySQL. Built small CRUD projects and gained strong understanding of backend development.",
   },
   {
     role: "Web Developer (Intern → Junior Developer)",
     company: "Techora Company, Islamabad",
     duration: "2025 – Present",
-    description: "Worked on real-world web applications, fixed bugs, developed new features and collaborated with team on live projects."
-  }
+    description:
+      "Worked on real-world web applications, fixed bugs, developed new features and collaborated with team on live projects.",
+  },
 ];
 
-const ExperienceItem = ({exp, idx, start, end, scrollYProgress, layout}) => {
+const ExperienceItem = ({
+  exp,
+  idx,
+  start,
+  end,
+  scrollYProgress,
+  layout,
+}: ExperienceItemProps) => {
   const scale = useTransform(scrollYProgress , [start , end], [0,1])
   const opacity = useTransform(scrollYProgress , [start , end], [0,1])
 
@@ -60,7 +86,7 @@ const ExperienceItem = ({exp, idx, start, end, scrollYProgress, layout}) => {
 
 export default function Experience() {
 
-  const sceneRef = useRef(null);
+  const sceneRef = useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

@@ -46,15 +46,15 @@ export default function Testimonials() {
             className="bg-bg/10 backdrop-blur-lg border border-text/20 rounded-2xl p-6 flex flex-col items-center text-center transform transition duration-500 hover:scale-105 hover:-rotate-1"
           >
             <div className="p-0.75 rounded-full bg-(--gradient) shadow-[0_0_20px_rgba(99,102,241,0.6)] mb-4">
-  <Image
-    src={t.img}
-    alt={t.name}
-    width={80}
-    height={80}
-    className="rounded-full object-cover bg-bg"
-    loading="lazy"
-  />
-</div>
+              <Image
+                src={t.img}
+                alt={t.name}
+                width={80}
+                height={80}
+                className="rounded-full object-cover bg-bg"
+                loading="lazy"
+              />
+            </div>
 
             <p className="text-text/40 italic mb-4">{t.review}</p>
             <h3 className="text-lg font-semibold text-[#6366f1]">{t.name}</h3>

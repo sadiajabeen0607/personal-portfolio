@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import ParticlesBackground from "./ParticlesBackground";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
@@ -23,7 +23,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState("");
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     if (name === "budget" && value && !/^\d+$/.test(value)) return;
@@ -55,7 +55,7 @@ export default function Contact() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validateForm()) return;

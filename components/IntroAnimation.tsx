@@ -7,15 +7,15 @@ const name = "Sadia Jabeen";
 export default function IntroAnimation({ onFinish }: { onFinish: () => void }) {
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden
-      bg-gradient-to-br from-slate-950 via-slate-900 to-black"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden
+      bg-linear-to-br from-slate-950 via-slate-900 to-black"
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
       transition={{ delay: 4.5, duration: 1 }}
       onAnimationComplete={onFinish}
     >
       {/* Soft Glow */}
-      <div className="absolute w-[600px] h-[600px] bg-cyan-400/10 rounded-full blur-[140px]" />
+      <div className="absolute w-150 h-150 bg-cyan-400/10 rounded-full blur-[140px]" />
 
       <div className="relative text-center">
         {/* Name (Letter Reveal + Gradient) */}
@@ -58,7 +58,7 @@ export default function IntroAnimation({ onFinish }: { onFinish: () => void }) {
 
         {/* Loading Bar */}
         <motion.div
-          className="mt-10 h-[2px] w-56 bg-slate-700 mx-auto overflow-hidden rounded-full"
+          className="mt-10 h-0.5 w-56 bg-slate-700 mx-auto overflow-hidden rounded-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}

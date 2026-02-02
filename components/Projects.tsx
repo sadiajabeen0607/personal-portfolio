@@ -223,7 +223,6 @@ export default function Projects() {
                 </AnimatePresence>
               </div>
 
-              {/* TECH DIV (ANIMATED) */}
             </div>
           ))}
         </div>

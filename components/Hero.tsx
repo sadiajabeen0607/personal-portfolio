@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { FaGithub } from "react-icons/fa6";
 import HeroRight from "./HeroRight";
@@ -9,14 +9,14 @@ const socials = [
   { Icon: FaGithub, label: "X", href: "https://github.com/sadiajabeen0607" },
 ];
 
-const glowVariant = {
+const glowVariant: Variants = {
   initial: { scale: 1, y: 0, filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" },
   hover: {
     scale: 1.1,
     y: -3,
     filter:
       "drop-shadow(0 0 8px rgba(13, 88, 204, 0.8)) drop-shadow(0 0 18px rgba(16, 185, 129, 0.8))",
-    transition: { type: "string", stiffness: 300, damping: 15 },
+    transition: { type: "spring", stiffness: 300, damping: 15 },
   },
   tap: { scale: 0.95, y: 0, transition: { duration: 0.08 } },
 };

@@ -1,20 +1,20 @@
 "use client";
 
 import { FaGithub } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const socials = [
   { Icon: FaGithub, label: "X", href: "https://github.com/sadiajabeen0607" },
 ];
 
-const glowVariant = {
+const glowVariant: Variants = {
   initial: { scale: 1, y: 0, filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" },
   hover: {
     scale: 1.1,
     y: -3,
     filter:
       "drop-shadow(0 0 8px rgba(13, 88, 204, 0.8)) drop-shadow(0 0 18px rgba(16, 185, 129, 0.8))",
-    transition: { type: "string", stiffness: 300, damping: 15 },
+    transition: { type: "spring", stiffness: 300, damping: 15 },
   },
   tap: { scale: 0.95, y: 0, transition: { duration: 0.08 } },
 };
@@ -23,7 +23,7 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-bg">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_60%_at_75%_35%,rgba(13,88,204,0.25),transparent_70%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_55%_at_30%_70%,rgba(16,185,129,0.30),transparent_70%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_55%_at_30%_70%,rgba(236,72,153,0.3),transparent_70%)]" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
