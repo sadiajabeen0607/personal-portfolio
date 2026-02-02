@@ -143,4 +143,9 @@ p a:hover {
   opacity: 0.85;
 }
 
+select option {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
 

@@ -246,7 +246,7 @@ export default function Projects() {
             </a>
           </div>
         ) : (
-          <div className="absolute bottom-20 flex gap-4 z-30">
+          <div className="mt-8 flex gap-4 z-30">
             <p
               className="px-6 py-3 font-semibold rounded-lg bg-text"
             >
