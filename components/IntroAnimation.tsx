@@ -11,20 +11,21 @@ export default function IntroAnimation({ onFinish }: { onFinish: () => void }) {
       bg-linear-to-br from-slate-950 via-slate-900 to-black"
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ delay: 4.5, duration: 1 }}
+      transition={{ delay: 1.1, duration: 0.4, ease: "easeOut" }}
       onAnimationComplete={onFinish}
+      onClick={onFinish}
     >
       {/* Soft Glow */}
       <div className="absolute w-150 h-150 bg-cyan-400/10 rounded-full blur-[140px]" />
 
       <div className="relative text-center">
-        {/* Name (Letter Reveal + Gradient) */}
+        {/* Name */}
         <motion.h1
-          className="flex justify-center text-5xl md:text-7xl font-extrabold"
+          className="flex justify-center text-4xl md:text-6xl font-extrabold"
           initial="hidden"
           animate="visible"
           variants={{
-            visible: { transition: { staggerChildren: 0.08 } },
+            visible: { transition: { staggerChildren: 0.025 } },
           }}
         >
           {name.split("").map((char, i) => (
@@ -33,11 +34,11 @@ export default function IntroAnimation({ onFinish }: { onFinish: () => void }) {
               className="bg-linear-to-r from-[#6366f1] via-[#22d3ee] to-[#f472b6]
               bg-clip-text text-transparent"
               variants={{
-                hidden: { y: 50, opacity: 0 },
+                hidden: { y: 14, opacity: 0 },
                 visible: {
                   y: 0,
                   opacity: 1,
-                  transition: { duration: 0.6, ease: "easeOut" },
+                  transition: { duration: 0.25, ease: "easeOut" },
                 },
               }}
             >
@@ -48,26 +49,26 @@ export default function IntroAnimation({ onFinish }: { onFinish: () => void }) {
 
         {/* Subtitle */}
         <motion.p
-          className="mt-4 text-xs md:text-sm uppercase tracking-[0.35em] text-slate-400"
+          className="mt-2 text-xs md:text-sm uppercase tracking-[0.28em] text-slate-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.6 }}
+          transition={{ delay: 0.4, duration: 0.3 }}
         >
           Full Stack Developer
         </motion.p>
 
-        {/* Loading Bar */}
+        {/* Minimal Apple-style progress hint */}
         <motion.div
-          className="mt-10 h-0.5 w-56 bg-slate-700 mx-auto overflow-hidden rounded-full"
+          className="mt-5 h-0.5 w-32 bg-slate-800 mx-auto overflow-hidden rounded-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: 0.55 }}
         >
           <motion.div
             className="h-full bg-linear-to-r from-[#6366f1] via-[#22d3ee] to-[#f472b6]"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
           />
         </motion.div>
       </div>
