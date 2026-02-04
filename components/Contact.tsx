@@ -16,17 +16,18 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    service: "",
-    budget: "",
+    phone: "",
     idea: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState("");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
 
-    if (name === "budget" && value && !/^\d+$/.test(value)) return;
+    if (name === "phone" && value && !/^[\d+ ]+$/.test(value)) return;
 
     setFormData((p) => ({ ...p, [name]: value }));
     if (errors[name]) setErrors((p) => ({ ...p, [name]: "" }));
@@ -36,7 +37,7 @@ export default function Contact() {
     const requiredField: (keyof typeof formData)[] = [
       "name",
       "email",
-      "service",
+      "phone",
       "idea",
     ];
     const newErrors: Record<string, string> = {};
@@ -46,10 +47,6 @@ export default function Contact() {
         newErrors[f] = "Required Field";
       }
     });
-
-    if (formData.service !== "other" && !formData.budget.trim()) {
-      newErrors.budget = "Required Field";
-    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -69,6 +66,7 @@ export default function Contact() {
           ...formData,
           from_name: formData.name,
           reply_to: formData.email,
+          phone: formData.phone,
         },
         PUBLIC_KEY,
       );
@@ -76,8 +74,7 @@ export default function Contact() {
       setFormData({
         name: "",
         email: "",
-        service: "",
-        budget: "",
+        phone: "",
         idea: "",
       });
     } catch (error) {
@@ -194,59 +191,25 @@ export default function Contact() {
                 <p className="text-red-500 text-xs">{errors.email}</p>
               )}
             </div>
-            {/* Service Needed */}
+            {/* Phone */}
             <div className="flex flex-col">
               <label className="mb-1">
-                Service Needed <span className="text-red-500">*</span>
+                Your Phone <span className="text-red-500">*</span>
               </label>
-              <select
-                name="service"
-                value={formData.service}
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Your Phone Number"
+                value={formData.phone}
                 onChange={handleChange}
-                className={`p-3 rounded-md bg-bg/10 border ${errors.service ? "border-red-500" : "border-gray-500"} text-text focus:outline-none focus:border-text`}
-              >
-                <option value="" className="text-text" disabled>
-                  Select a Service
-                </option>
-                <option value="web development" className="text-text">
-                  Web Development
-                </option>
-                <option value="frontend development" className="text-text">
-                  Frontend Development
-                </option>
-                <option value="backend development" className="text-text">
-                  backend Development
-                </option>
-                <option value="full stack development" className="text-text">
-                  Full Stack Development
-                </option>
-                <option value="other" className="text-text">
-                  other
-                </option>
-              </select>
-              {errors.service && (
-                <p className="text-red-500 text-xs">{errors.email}</p>
+                className={`p-3 rounded-md bg-bg/10 border ${
+                  errors.phone ? "border-red-500" : "border-gray-500"
+                } text-text focus:outline-none focus:border-text`}
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-xs">{errors.phone}</p>
               )}
             </div>
-
-            {formData.service && formData.service !== "other" && (
-              <div className="flex flex-col">
-                <label className="mb-1">
-                  Budget <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="number"
-                  name="budget"
-                  placeholder="Your budget"
-                  value={formData.budget}
-                  onChange={handleChange}
-                  className={`p-3 rounded-md bg-bg/10 border ${errors.budget ? "border-red-500" : "border-gray-500"} text-text focus:outline-none focus:border-text`}
-                />
-                {errors.budget && (
-                  <p className="text-red-500 text-xs">{errors.budget}</p>
-                )}
-              </div>
-            )}
 
             <div className="flex flex-col">
               <label className="mb-1">
